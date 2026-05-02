@@ -4,7 +4,6 @@
   "displayName": "Nesur Utilities",
   "description": "Reusable systems and utilities",
   "unity": "6000.0",
-  "type": "library",
   "author": {
     "name": "Piotr Wysocki"
   }
