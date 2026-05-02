@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "displayName": "Nesur Utilities",
   "description": "Reusable systems and utilities",
-  "unity": "6000.3",
+  "unity": "6000.0",
   "author": {
     "name": "Piotr Wysocki"
   }
