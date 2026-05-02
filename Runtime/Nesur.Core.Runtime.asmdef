@@ -1,6 +1,6 @@
 {
   "name": "Nesur.Core.Runtime",
-  "rootNamespace": "Nesur.Core",
+  "rootNamespace": "",
   "references": [
   ],
   "includePlatforms": [],
