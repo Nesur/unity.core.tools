@@ -1,0 +1,10 @@
+{
+  "name": "pl.nesur.core",
+  "version": "1.0.0",
+  "displayName": "Nesur Utilities",
+  "description": "Reusable systems and utilities",
+  "unity": "6000.3",
+  "author": {
+    "name": "Piotr Wysocki"
+  }
+}
