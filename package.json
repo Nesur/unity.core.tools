@@ -1,8 +1,8 @@
 {
   "name": "pl.nesur.core",
   "version": "1.0.0",
-  "displayName": "Nesur Utilities",
-  "description": "Reusable systems and utilities",
+  "displayName": "Nesur tools",
+  "description": "Reusable tools and utilities for speeding up new projects development.",
   "unity": "6000.0",
   "author": {
     "name": "Piotr Wysocki"
