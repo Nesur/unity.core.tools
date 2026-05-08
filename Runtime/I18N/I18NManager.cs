@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Nesur.Core.I18N {
-	/// <summary>
-	/// Class responsible for loading translations files and loading values to in memory structure.
-	/// It also provides methods to get localized strings by key and with parameters.
-	/// Files are loaded from Unity Resources directory from I18N subdirectory.
-   	/// Translation files structure is simple key=value per line. File name should be the same as SystemLanguage value for the language it contains translations for (example: polish.txt)
-	/// </summary>
+	 /// <summary>
+    /// Class responsible for loading translations files and loading values to in memory structure.
+    /// It also provides methods to get localized strings by key and with parameters.
+    /// Files are loaded from Unity Resources directory from I18N subdirectory.
+    /// Translation files structure is simple key=value per line. File name should be the same as SystemLanguage value for the language it contains translations for (example: polish.txt)
+    /// </summary>
     public class I18NManager : Singleton<I18NManager> {
-        private static string RESOURCES_LANG_MESSAGES_PATH = "I18N";
+        [SerializeField] private string defaultLanguage = "english";
+        [SerializeField] private string i18nResourcesDirectory = "I18N";
         private readonly Dictionary<string, string> _messages = new();
 
 
@@ -54,30 +55,30 @@ namespace Nesur.Core.I18N {
         private void LoadMessagesForLanguage(SystemLanguage systemLanguage) {
             Debug.Log($"loading message for lang: {systemLanguage}");
             TextAsset messagesFile = LoadMessagesFileForLanguage(systemLanguage);
-            if (messagesFile != null) {
-                _messages.Clear();
-                string messagesFileText = messagesFile.text;
-                string[] lines = messagesFileText.Split("\n");
-                foreach (string line in lines) {
-                    string[] lineValues = line.Split("=");
-                    if (lineValues.Length != 2) {
-                        throw new Exception(
-                            $"Invalid line: {line}. Line does not contain 2 values.");
-                    }
-
-                    _messages.Add(lineValues[0].Trim(), lineValues[1].Trim());
+            _messages.Clear();
+            string messagesFileText = messagesFile.text;
+            string[] lines = messagesFileText.Split("\n");
+            foreach (string line in lines) {
+                string[] lineValues = line.Split("=");
+                if (lineValues.Length != 2) {
+                    throw new Exception(
+                        $"Invalid line: {line}. Line does not contain 2 values.");
                 }
+
+                _messages.Add(lineValues[0].Trim(), lineValues[1].Trim());
             }
         }
 
         private TextAsset LoadMessagesFileForLanguage(SystemLanguage language) {
-            TextAsset[] textAssets = Resources.LoadAll<TextAsset>(RESOURCES_LANG_MESSAGES_PATH);
+            TextAsset[] textAssets = Resources.LoadAll<TextAsset>(i18nResourcesDirectory);
             foreach (TextAsset textAsset in textAssets) {
                 if (textAsset.name.Equals(language.ToString(), StringComparison.CurrentCultureIgnoreCase)) {
                     return textAsset;
                 }
             }
-            return null;
+            Debug.Log("Language file not found for language: " + language + ". Falling back to default language: " +
+                      defaultLanguage);
+            return Resources.Load<TextAsset>($"{i18nResourcesDirectory}/{defaultLanguage}");
         }
     }
 }
