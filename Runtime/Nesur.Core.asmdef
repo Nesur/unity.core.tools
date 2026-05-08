@@ -1,6 +1,7 @@
 {
   "name": "Nesur.Core",
   "references": [
+    "Unity.TextMeshPro"
   ],
   "includePlatforms": [],
   "excludePlatforms": [],

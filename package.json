@@ -6,5 +6,8 @@
   "unity": "6000.0",
   "author": {
     "name": "Piotr Wysocki"
+  },
+  "dependencies": {
+    "com.unity.textmeshpro": "3.0.6"
   }
 }
