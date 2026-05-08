@@ -3,6 +3,8 @@
 namespace Nesur.Core.StateMachine {
     public class StateMachine<T> where T : IState {
 
+        public IState CurrentState => _currentState;
+        
         private T _currentState;
 
 
