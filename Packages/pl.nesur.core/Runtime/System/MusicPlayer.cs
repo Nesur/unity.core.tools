@@ -18,6 +18,7 @@ namespace Nesur.Core.System {
             }
 
             _musicSource.clip = clip;
+            _musicSource.Play();
         }
 
         public void SetMusicVolume(float value) {
