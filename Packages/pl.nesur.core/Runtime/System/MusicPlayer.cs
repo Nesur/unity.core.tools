@@ -7,11 +7,19 @@ namespace Nesur.Core.System {
         public void StopMusic() {
             _musicSource.Stop();
         }
-        
+
         public void PlayMusic() {
             _musicSource.Play();
         }
-        
+
+        public void ChangeMusic(AudioClip clip) {
+            if (clip == null) {
+                return;
+            }
+
+            _musicSource.clip = clip;
+        }
+
         public void SetMusicVolume(float value) {
             _musicSource.volume = value;
         }
