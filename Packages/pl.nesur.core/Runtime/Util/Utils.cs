@@ -205,4 +205,16 @@ namespace Nesur.Core.Util {
         public static SerializableDateTime From(DateTime dt)
             => new SerializableDateTime { value = dt.ToString("o") };
     }
+    
+    [Serializable]
+    public class NullableInt {
+        public bool hasValue = false;
+        public int value;
+    }
+
+    [Serializable]
+    public class NullableFloat {
+        public bool hasValue = false;
+        public float value;
+    }
 }
