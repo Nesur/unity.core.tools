@@ -9,9 +9,9 @@ namespace Nesur.Core.Pooling {
     /// </summary>
     public class ObjectPoolWrapper<T> where T : Component {
         private readonly IObjectPool<T> _objectPool;
-        private readonly Transform _prefab;
+        private readonly T _prefab;
 
-        public ObjectPoolWrapper(Transform prefab) {
+        public ObjectPoolWrapper(T prefab) {
             _objectPool = new ObjectPool<T>(OnCreateObject, OnGetObject, OnReleaseObject);
             _prefab = prefab;
         }
@@ -56,13 +56,12 @@ namespace Nesur.Core.Pooling {
 
         private T OnCreateObject() {
             var newInstance = Object.Instantiate(_prefab, _prefab.transform.position, Quaternion.identity);
-            var pooledObject = newInstance.GetComponent<T>();
-            var poolableObject = pooledObject.GetComponent<IPoolableObject<T>>();
+            var poolableObject = newInstance.GetComponent<IPoolableObject<T>>();
             if(poolableObject == null) {
                 throw new Exception("Pooled object does not implement required interface IPoolableObject.");
             }
             poolableObject.SetPool(this);
-            return pooledObject;
+            return newInstance;
         }
     }
 }
