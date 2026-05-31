@@ -13,6 +13,10 @@ namespace Nesur.Core {
         private bool _paused = false;
         private bool _timerFinishedAllIterations;
 
+        /// <summary>
+        /// Timer runs infinite number of times
+        /// </summary>
+        /// <param name="duration"></param>
         public Timer(float duration) {
             Debug.Log("Timer created with duration: " + duration);
             _duration = duration;
@@ -39,10 +43,10 @@ namespace Nesur.Core {
 
             _currentTime += Time.deltaTime;
             if (_currentTime >= _duration) {
+                _currentTime = 0;
                 OnTimerElapsed?.Invoke(this, EventArgs.Empty);
 
                 if (_iterationCount != 0) {
-                    _currentTime = 0;
                     _currentIteration++;
                     if (_currentIteration >= _iterationCount) {
                         _timerFinishedAllIterations = true;
