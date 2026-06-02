@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.0] - 2026-05-02
+## [1.0.0] - 2026-06-02
 
 ### Added
 
@@ -16,12 +16,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - added `Utils` namespace with utility classes.
 - added `Singleton` class, which is a base class for creating singleton objects in Unity. It allows you to create singleton objects in a simple way, and manage them.
 - added `Timer` class, which is a simple timer that can be used to create timers in the project. It allows you to create timers, and manage them.
-
-[//]: # (### Fixed)
-[//]: # (- example)
-
-[//]: # (### Changed)
-[//]: # (- example)
-
-[//]: # (### Removed)
-[//]: # (- example)
+- added `AnimationEventComponent`, `AnimationPlayer`, and `TrackAnimationExit` classes for animation event handling and exit tracking.
+- added `CursorUtil` for cursor management helpers.
+- added `EmptyObjectRenderer` for rendering empty objects.
+- added `GridSystem` and `TickManager` system helpers.
+- added `InputSystemUtil` for input system helpers.
+- added `ListExtensions.shuffle` for shuffling lists.
+- added `NullableInt` and `NullableFloat` serializable classes.
+- added `CurrentState` support to `StateMachine`.
+- added `ChangeMusic` to `MusicPlayer` for dynamic audio clip management.
