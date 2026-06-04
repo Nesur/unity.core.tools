@@ -9,9 +9,9 @@ namespace Nesur.Core.I18N {
     /// Files are loaded from Unity Resources directory from I18N subdirectory.
     /// Translation files structure is simple key=value per line. File name should be the same as SystemLanguage value for the language it contains translations for (example: polish.txt)
     /// </summary>
-    public class I18NManager : Singleton<I18NManager> {
+    public class LocalizationManager : Singleton<LocalizationManager> {
         [SerializeField] private string defaultLanguage = "english";
-        [SerializeField] private string i18nResourcesDirectory = "I18N";
+        [SerializeField] private string translationsFolder = "I18N";
         private readonly Dictionary<string, string> _messages = new();
 
 
@@ -70,7 +70,7 @@ namespace Nesur.Core.I18N {
         }
 
         private TextAsset LoadMessagesFileForLanguage(SystemLanguage language) {
-            TextAsset[] textAssets = Resources.LoadAll<TextAsset>(i18nResourcesDirectory);
+            TextAsset[] textAssets = Resources.LoadAll<TextAsset>(translationsFolder);
             foreach (TextAsset textAsset in textAssets) {
                 if (textAsset.name.Equals(language.ToString(), StringComparison.CurrentCultureIgnoreCase)) {
                     return textAsset;
@@ -78,7 +78,7 @@ namespace Nesur.Core.I18N {
             }
             Debug.Log("Language file not found for language: " + language + ". Falling back to default language: " +
                       defaultLanguage);
-            return Resources.Load<TextAsset>($"{i18nResourcesDirectory}/{defaultLanguage}");
+            return Resources.Load<TextAsset>($"{translationsFolder}/{defaultLanguage}");
         }
     }
 }

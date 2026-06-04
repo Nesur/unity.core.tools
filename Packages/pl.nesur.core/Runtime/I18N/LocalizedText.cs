@@ -25,7 +25,7 @@ namespace Nesur.Core.I18N {
         }
 
         private void UpdateText() {
-            _textComponent.text = I18NManager.Instance.GetLocalizedString(key);
+            _textComponent.text = LocalizationManager.Instance.GetLocalizedString(key);
         }
     }
 }
