@@ -59,6 +59,10 @@ namespace Nesur.Core.I18N {
             string messagesFileText = messagesFile.text;
             string[] lines = messagesFileText.Split("\n");
             foreach (string line in lines) {
+                // empty lines are ignored, so you can add empty lines to the translations files to make them more readable
+                if (line.Length == 0) {
+                    continue;
+                }
                 string[] lineValues = line.Split("=");
                 if (lineValues.Length != 2) {
                     throw new Exception(
