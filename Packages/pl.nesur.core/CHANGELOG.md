@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.0] - 2026-06-02
+## [1.0.0] - 2026-06-04
 
 ### Added
 
@@ -25,3 +25,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - added `NullableInt` and `NullableFloat` serializable classes.
 - added `CurrentState` support to `StateMachine`.
 - added `ChangeMusic` to `MusicPlayer` for dynamic audio clip management.
+- added `Logger` utility for centralized logging and debug helpers.
+- added `EventMessageManager` for dispatching and managing in-project event messages.
+
+### Changed
+
+- refactored `JsonSaveSystem` and `ISaveSystem` to use `saveName` instead of a file path for improved clarity; added `GetSaveFilePath` method.
+- enhanced `Timer` class with additional documentation and reset logic that resets the current time when elapsed.
+- changed pooling prefab type to improve pooling behavior and compatibility with pooled objects.
+
