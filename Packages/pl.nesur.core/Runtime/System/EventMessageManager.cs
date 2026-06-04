@@ -20,6 +20,7 @@ namespace Nesur.Core.System {
         private readonly List<string> _messageQueue = new();
 
         public void PostMessage(string message) {
+            Logger.Log($"Posting message: {message}");
             TickManager.Instance.RegisterTickable(this);
             _messageQueue.Add(message);
             if (_debounceTimer <= 0) {
