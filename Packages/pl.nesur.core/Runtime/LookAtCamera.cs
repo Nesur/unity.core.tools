@@ -4,15 +4,21 @@ using NotImplementedException = System.NotImplementedException;
 
 namespace Nesur.Core {
     public class LookAtCamera : MonoBehaviour, ITickable {
-        private static readonly Camera mainCamera = Camera.main;
         [SerializeField] private bool alignOnStart = true;
         [SerializeField] private bool lockUpRotation;
+
+        private Camera mainCamera;
 
         public void OnTick() {
             AlignWithCamera();
         }
 
         private void Start() {
+            mainCamera = Camera.main;
+            if (mainCamera == null) {
+                Debug.LogError("Main camera not found!");
+                return;
+            }
             if (alignOnStart) {
                 AlignWithCamera();
             }
@@ -20,7 +26,7 @@ namespace Nesur.Core {
                 TickManager.Instance.RegisterTickable(this);
             }
         }
-        
+
         private void OnDestroy() {
             TickManager.Instance.UnregisterTickable(this);
         }
