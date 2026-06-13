@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 namespace Nesur.Core.Util {
@@ -22,5 +24,19 @@ namespace Nesur.Core.Util {
             Debug.Log("No keyboard found. Cannot check if Escape key was pressed.");
             return false;
         }
+        
+        private static bool IsPointerOverUi(Vector2 screenPosition) {
+            if (!EventSystem.current) {
+                return false;
+            }
+
+            PointerEventData pointerEventData = new PointerEventData(EventSystem.current) {
+                position = screenPosition
+            };
+            List<RaycastResult> uiRaycastResults = new();
+            EventSystem.current.RaycastAll(pointerEventData, uiRaycastResults);
+            return uiRaycastResults.Count > 0;
+        }
+        
     }
 }
