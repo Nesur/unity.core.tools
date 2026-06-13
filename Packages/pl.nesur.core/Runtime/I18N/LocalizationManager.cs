@@ -34,6 +34,9 @@ namespace Nesur.Core.I18N {
 
             return localizedString;
         }
+        public string GetLocalizedStringWithParams(string key, string parameter) {
+            return GetLocalizedStringWithParams(key, new[] { parameter });
+        }
 
         public string GetLocalizedStringWithParams(string key, string[] parameters) {
             string localizedString = GetLocalizedString(key);
