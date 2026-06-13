@@ -180,6 +180,15 @@ namespace Nesur.Core.Util {
         public static void ClearEventTriggers(EventTrigger eventTrigger) {
             eventTrigger.triggers.Clear();
         }
+        
+        public static bool IsOnLayer(GameObject gameObject, int layer) {
+            return gameObject != null && gameObject.layer == layer;
+        }
+
+        public static bool IsOnLayer(GameObject gameObject, string layerName) {
+            int layer = LayerMask.NameToLayer(layerName);
+            return layer >= 0 && IsOnLayer(gameObject, layer);
+        }
     }
 
     public readonly struct ScreenBounds {
