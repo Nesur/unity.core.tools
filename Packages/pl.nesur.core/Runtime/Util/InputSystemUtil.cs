@@ -25,7 +25,7 @@ namespace Nesur.Core.Util {
             return false;
         }
         
-        private static bool IsPointerOverUi(Vector2 screenPosition) {
+        public static bool IsPointerOverUi(Vector2 screenPosition) {
             if (!EventSystem.current) {
                 return false;
             }
