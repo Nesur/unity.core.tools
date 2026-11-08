@@ -2,11 +2,10 @@
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
-using UnityEngine;
 
 namespace Nesur.Core.Util {
     public class EncryptionUtil {
-        public static byte[] EncryptUsingAes(string dataToEncrypt) {
+        public static byte[] EncryptUsingAes(string dataToEncrypt, string secret) {
             // Check arguments.
             if (dataToEncrypt == null || dataToEncrypt.Length <= 0)
                 throw new ArgumentNullException(nameof(dataToEncrypt));
@@ -15,7 +14,7 @@ namespace Nesur.Core.Util {
             // Create an Aes object
             // with the specified key and IV.
             using (Aes aesAlg = Aes.Create()) {
-                aesAlg.Key = GetAesKey();
+                aesAlg.Key = GetAesKey(secret);
                 aesAlg.IV = GetAesIv();
 
                 // Create an encryptor to perform the stream transform.
@@ -37,7 +36,7 @@ namespace Nesur.Core.Util {
             return encrypted;
         }
 
-        public static string DecryptUsingAes(byte[] encryptedData) {
+        public static string DecryptUsingAes(byte[] encryptedData, string secret) {
             // Check arguments.
             if (encryptedData == null || encryptedData.Length <= 0)
                 throw new ArgumentNullException(nameof(encryptedData));
@@ -49,7 +48,7 @@ namespace Nesur.Core.Util {
             // Create an Aes object
             // with the specified key and IV.
             using (Aes aesAlg = Aes.Create()) {
-                aesAlg.Key = GetAesKey();
+                aesAlg.Key = GetAesKey(secret);
                 aesAlg.IV = GetAesIv();
 
                 // Create a decryptor to perform the stream transform.
@@ -76,8 +75,8 @@ namespace Nesur.Core.Util {
             }
         }
 
-        private static byte[] GetAesKey() {
-            return CreateSha256Hash(SystemInfo.deviceUniqueIdentifier);
+        private static byte[] GetAesKey(string secret) {
+            return CreateSha256Hash(secret);
         }
 
         private static byte[] GetAesIv() {

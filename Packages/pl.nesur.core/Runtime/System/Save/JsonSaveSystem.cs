@@ -4,18 +4,18 @@ using UnityEngine;
 
 namespace Nesur.Core.System.Save {
     public class JsonSaveSystem<T> : ISaveSystem<T> {
-        public void Save(T saveObject, string saveName) {
+        public void Save(T saveObject, string saveName, string secret) {
             string json = JsonUtility.ToJson(saveObject);
-            byte[] encryptedJson = EncryptionUtil.EncryptUsingAes(json);
+            byte[] encryptedJson = EncryptionUtil.EncryptUsingAes(json, secret);
             string saveFilePath = GetSaveFilePath(saveName);
             File.WriteAllBytes(saveFilePath, encryptedJson);
         }
 
-        public T Load(string saveName) {
+        public T Load(string saveName, string secret) {
             string saveFilePath = GetSaveFilePath(saveName);
             if (File.Exists(saveFilePath)) {
                 byte[] encryptedJson = File.ReadAllBytes(saveFilePath);
-                string json = EncryptionUtil.DecryptUsingAes(encryptedJson);
+                string json = EncryptionUtil.DecryptUsingAes(encryptedJson, secret);
                 return JsonUtility.FromJson<T>(json);
             }
             return default(T);
